@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Start-Class: io.training.week4.QuoteServiceApplication
+Main-Class: org.springframework.boot.loader.JarLauncher
+
