@@ -18,5 +18,5 @@ public interface QuoteRepository extends JpaRepository<Quote, Long> {
       + "from ad_aa0fd39668a85a2.quote q "
       + "where q.symbol = ?1 and date_format(q.date, '%Y-%m-%d') = ?2 "
       + "order by q.date desc limit 1", nativeQuery = true)
-  double retrieveClosingPrice(long id, String date, String tableName);
+  double retrieveClosingPrice(long id, String date);
 }

@@ -16,33 +16,23 @@ import org.springframework.stereotype.Service;
 public class QuoteService {
 
   @Value("${stock.data.url}") private String stockUrl;
-  @Value("${db.limit}") private int limit;
   private final ObjectMapper objectMapper = new ObjectMapper();
   private final TypeFactory typeFactory = objectMapper.getTypeFactory();
   private QuoteRepository quoteRepository;
   private AggregatedData aggregatedData;
-  private List<Quote> quoteList;
 
   public QuoteService(QuoteRepository quoteRepository, AggregatedData aggregatedData) {
     this.quoteRepository = quoteRepository;
     this.aggregatedData = aggregatedData;
   }
 
-  public List<Quote> load() {
-
-    if(quoteList.size() > 0) { quoteList.clear(); }
-
+  public void load() {
     try {
       URL jsonUrl = new URL(stockUrl);
-      quoteList = objectMapper.readValue(jsonUrl, typeFactory.constructCollectionType(List.class, Quote.class));
-      for (int i = 0; i < limit; i++) {
-        quoteRepository.save(quoteList.get(i));
-      }
-      return quoteList;
+      quoteRepository.saveAll(objectMapper.readValue(jsonUrl, typeFactory.constructCollectionType(List.class, Quote.class)));
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return null;
   }
 
   public AggregatedData retrieveStockData(SymbolResult symbolResult, String date) {
