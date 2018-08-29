@@ -9,5 +9,5 @@ public interface SymbolRepository extends JpaRepository<Symbol, Long> {
   @Query(value = "select new io.training.week4.model.Symbol(s.symbolId, s.symbol) "
       + "from Symbol s "
       + "where s.symbol = ?1")
-  Symbol retrieveSymbolData(String stock);
+  Symbol retrieveSymbol(String stock);
 }

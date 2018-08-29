@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 public class SymbolControllerUnitTest {
 
   private MockMvc mockMvc;
-  private SymbolService symbolService = new SymbolService();
+//  private SymbolService symbolService = new SymbolService();
   private String symbol;
 
   @Mock
@@ -28,7 +28,7 @@ public class SymbolControllerUnitTest {
   @Before
   public void setUp() {
     mockMvc = MockMvcBuilders.standaloneSetup(symbolController).build();
-    symbol = symbolService.generateRandomSymbol();
+//    symbol = symbolService.generateRandomSymbol();
   }
 
   @Test
